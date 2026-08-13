@@ -41,47 +41,8 @@ exports.handler = async function () {
           remindersSentTo.push(`${student.name}: lesson reminder`);
         }
       }
-    }
 
-    // Проверяем дедлайны ДЗ
-    for (const hw of student.homework_deadlines || []) {
-      if (hw.weekday !== weekday) continue;
-      if (hw.time === currentTime) {
-        const text = `Напоминание: дедлайн по домашнему заданию сегодня в ${hw.time}. Ссылка: ${hw.homework_url}`;
-        await sendTelegramMessage(BOT_TOKEN, student.chat_id, text);
-        remindersSentTo.push(`${student.name}: homework deadline`);
-      }
-    }
-  }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ checkedAt: now.toISOString(), remindersSentTo }),
-  };
-};
-
-function subtractMinutes(timeStr, minutes) {
-  const [h, m] = timeStr.split(':').map(Number);
-  const total = h * 60 + m - minutes;
-  const normalized = ((total % (24 * 60)) + 24 * 60) % (24 * 60);
-  const hh = String(Math.floor(normalized / 60)).padStart(2, '0');
-  const mm = String(normalized % 60).padStart(2, '0');
-  return `${hh}:${mm}`;
-}
-
-async function sendTelegramMessage(botToken, chatId, text) {
-  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: chatId, text }),
-  });
-  if (!res.ok) {
-    console.error('Telegram send error:', await res.text());
-  }
-}
-
-// Netlify Scheduled Function: запускать каждые 15 минут
-exports.config = {
-  schedule: '*/15 * * * *',
-};
+      // Автоматическая отправка ДЗ сразу после окончания урока
+      if (lesson.duration_minutes && lesson.homework_url) {
+        const endTime = addMinutes(lesson.time, lesson.duration_minutes);
+        if (endTime === currentTime) {
