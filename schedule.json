@@ -7,7 +7,7 @@
       "timezone_offset_hours": 3,
       "lessons": [
         { "weekday": 2, "time": "18:00", "duration_minutes": 60, "lesson_url": "https://your-site.netlify.app/unit-05a.html", "homework_url": "https://your-site.netlify.app/hw-unit-05a.html" },
-        { "weekday": 4, "time": "18:00", "duration_minutes": 15, "lesson_url": "https://your-site.netlify.app/unit-05b.html", "homework_url": "https://your-site.netlify.app/hw-unit-05b.html" }
+        { "weekday": 4, "time": "18:05", "duration_minutes": 15, "lesson_url": "https://your-site.netlify.app/unit-05b.html", "homework_url": "https://your-site.netlify.app/hw-unit-05b.html" }
       ]
     }
   ],
