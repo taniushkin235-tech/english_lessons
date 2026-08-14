@@ -4,16 +4,10 @@
     {
       "name": "Tan",
       "chat_id": "340655216",
-      "timezone_offset_hours": 3,
-      "lessons": [
-        { "weekday": 2, "time": "18:00", "duration_minutes": 60, "lesson_url": "https://your-site.netlify.app/unit-05a.html", "homework_url": "https://your-site.netlify.app/hw-unit-05a.html" },
-      { "weekday": 5, "time": "16:00", "duration_minutes": 15, "lesson_url": "https://your-site.netlify.app/unit-05b.html", "homework_url": "https://your-site.netlify.app/hw-unit-05b.html" }
-      ]
+      "timezone_offset_hours": 8,
+      "lessons": []
     }
   ],
   "_weekday_reference": "0=Вс, 1=Пн, 2=Вт, 3=Ср, 4=Чт, 5=Пт, 6=Сб",
-  "reminders_before_lesson_minutes": [
-    60,
-    15
-  ]
+  "reminders_before_lesson_minutes": [60, 15]
 }
